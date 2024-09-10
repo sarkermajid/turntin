@@ -33,7 +33,7 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                @if($item->status == 1)
+                                                @if($item->status == 1 ||  $item->status == 2 )
                                                 <a href="{{ route('files.edit',['id'=>$item->id]) }}" class="btn btn-sm btn-inverse-info disabled"> Update </a>
                                                 @else
                                                 <a href="{{ route('files.edit',['id'=>$item->id]) }}" class="btn btn-sm btn-inverse-info"> Update </a>
