@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -69,14 +70,26 @@ class UserController extends Controller
 
     public function StoreUser(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'username' => 'required',
-            'role' => 'required',
-            'status' => 'required',
-            'password' => 'required',
-            'expire_date' => 'required',
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users,username',
+            'role' => 'required|string',
+            'status' => 'required|string',
+            'password' => 'required|string|min:8',
+            'expire_date' => 'required|date',
+            'email' => 'required|email|unique:users,email',
         ]);
+
+
+        // Check if the email validation failed
+        if ($validator->errors()->has('email')) {
+            $notification = [
+                'message' => 'The email you entered already exists. Please use a different email address.',
+                'alert-type' => 'error',
+            ];
+            return redirect()->route('add.user')->with($notification);
+        }
+
         $user = new User;
         $user->name = $request->name;
         $user->username = $request->username;
