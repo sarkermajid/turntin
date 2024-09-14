@@ -8,13 +8,14 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use App\Rules\ValidFileName;
 
 class FileController extends Controller
 {
     public function fileUpload(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'file' => 'required|mimes:pdf,doc,docx|max:5120',
+            'file' => ['required', 'mimes:pdf,doc,docx', 'max:5120', new ValidFileName()],
         ]);
 
         if ($validator->fails()) {
