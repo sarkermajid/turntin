@@ -63,7 +63,8 @@
                                 <span class="badge rounded-pill bg-danger">Invalid File</span>
                                 @endif
                             </td>
-                            <td data-bs-toggle="modal" data-bs-target="#exampleModal2">{{ $file->created_at }}</td>
+                            <td data-bs-toggle="modal" data-bs-target="#exampleModal2">{{ \Carbon\Carbon::parse($file->created_at)->setTimezone('Asia/Dhaka')->format('j M, Y h:i A') }}
+                            </td>
                             <td>
                                 <a href="{{ route('user.file.delete',['id'=>$file->id]) }}" id="delete" class="btn btn-sm btn-outline-danger"> Delete </a>
                             </td>
