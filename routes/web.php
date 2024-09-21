@@ -94,6 +94,7 @@ Route::middleware(['auth', 'role:agent'])->group(function () {
         Route::get('agent/files/download/{id}', 'agentFilesDownload')->name('agent.files.download');
         Route::get('agent/files/delete/{id}', 'agentFilesDelete')->name('agent.files.delete');
         Route::get('agent/files/edit/{id}', 'agentFilesEdit')->name('agent.files.edit');
+        Route::get('agent/files/working/{id}', 'agentFilesWorking')->name('agent.files.working');
         Route::post('agent/files/update/{id}', 'agentFilesUpdate')->name('agent.files.update');
     });
 

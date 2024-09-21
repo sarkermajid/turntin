@@ -144,13 +144,15 @@ class FileController extends Controller
         }
 
         $file->status = $request->status;
-        // $file->checker_id = $request->checker_id;
+        $file->checker_id = auth()->user()->id;
         $file->flags = $request->flags;
         $file->save();
 
-        $user = User::where('id', Auth::user()->id)->first();
-        $user->check_count = $user->check_count + 1;
-        $user->save();
+        if ($request->status == 1) {
+            $user = User::where('id', Auth::user()->id)->first();
+            $user->check_count = $user->check_count + 1;
+            $user->save();
+        }
 
         $notification = [
             'message' => 'File Updated Successfully',
@@ -308,6 +310,7 @@ class FileController extends Controller
         }
 
         $file->status = $request->status;
+        $file->checker_id = auth()->user()->id;
         $file->flags = $request->flags;
         $file->save();
 
@@ -329,6 +332,18 @@ class FileController extends Controller
             'alert-type' => 'success',
         ];
 
+        return redirect('agent/all/files')->with($notification);
+    }
+
+    public function agentFilesWorking($id)
+    {
+        $file = File::find($id);
+        $file->working_on = auth()->user()->id;
+        $file->save();
+        $notification = [
+            'message' => 'you are started working on the file.',
+            'alert-type' => 'success',
+        ];
         return redirect('agent/all/files')->with($notification);
     }
 }

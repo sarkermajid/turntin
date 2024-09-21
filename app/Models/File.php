@@ -20,4 +20,9 @@ class File extends Model
     {
         return $this->belongsTo(User::class, 'checker_id', 'id');
     }
+
+    public function workingOn()
+    {
+        return $this->belongsTo(User::class, 'working_on');
+    }
 }
