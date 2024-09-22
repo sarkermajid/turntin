@@ -46,16 +46,16 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group mb-3">
-                                            <label for="plagiarism_report" class="form-label">Plagiarism Report</label>
-                                            <input type="file" name="plagiarism_report" class="form-control" id="plagiarism_report">
-                                            <span>{{ $file->plagiarism_report ?? '' }}</span>
+                                            <label for="ai_report" class="form-label">AI Report</label>
+                                            <input type="file" name="ai_report" class="form-control" id="ai_report">
+                                            <span>{{ $file->ai_report ?? '' }}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mb-3">
-                                            <label for="ai_report" class="form-label">AI Report</label>
-                                            <input type="file" name="ai_report" class="form-control" id="ai_report">
-                                            <span>{{ $file->ai_report ?? '' }}</span>
+                                            <label for="plagiarism_report" class="form-label">Plagiarism Report</label>
+                                            <input type="file" name="plagiarism_report" class="form-control" id="plagiarism_report">
+                                            <span>{{ $file->plagiarism_report ?? '' }}</span>
                                         </div>
                                     </div>
                                 </div>
